@@ -52,7 +52,7 @@ TARGET_KERNEL_SOURCE := kernel/samsung/msm8930-common
 ifneq ($(filter serranoltespr serranolteusc,$(TARGET_DEVICE)),)
 TARGET_KERNEL_CONFIG := samsung_serrano_usa_defconfig
 else
-TARGET_KERNEL_CONFIG := samsung_serrano_defconfig
+TARGET_KERNEL_CONFIG := samsung_lt02_defconfig
 endif
 
 # Bootloader
@@ -91,9 +91,7 @@ TARGET_FM_LEGACY_PATCHLOADER := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # Camera
-TARGET_NEED_CAMERA_ZSL := true
-TARGET_NEED_FFC_PICTURE_FIXUP := true
-TARGET_NEED_FFC_VIDEO_FIXUP := true
+TARGET_NEED_DISABLE_AUTOFOCUS := true
 TARGET_NEED_DISABLE_FACE_DETECTION := true
 TARGET_NEED_DISABLE_FACE_DETECTION_BOTH_CAMERAS := true
 
