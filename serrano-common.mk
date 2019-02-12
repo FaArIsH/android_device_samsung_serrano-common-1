@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+PRODUCT_CHARACTERISTICS := tablet
+
 # Also get non-open-source specific aspects
 $(call inherit-product, vendor/samsung/serrano-common/serrano-common-vendor.mk)
 
@@ -24,8 +26,8 @@ PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 960
-TARGET_SCREEN_WIDTH := 540
+TARGET_SCREEN_HEIGHT := 1024
+TARGET_SCREEN_WIDTH := 600
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -109,10 +111,6 @@ PRODUCT_PACKAGES += \
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.serrano
-
-# Vibrator
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-service.serrano
 
 # USB
 PRODUCT_PACKAGES += \
