@@ -57,18 +57,18 @@ void vendor_load_properties()
         property_override("ro.build.description", "serranoltebmc-user 4.4.2 KOT49H I257MVLUBNE6 release-keys");
         property_override_dual("ro.product.model", "ro.product.vendor.model", "SGH-I257M");
         property_override_dual("ro.product.device", "ro.product.vendor.device", "serranoltebmc");
-    } else if (model == "I9195") {
-        /* serranoltexx */
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/serranoltexx/serranolte:4.4.2/KOT49H/I9195XXUCNE6:user/release-keys");
-        property_override("ro.build.description", "serranoltexx-user 4.4.2 KOT49H I9195XXUCNE6 release-keys");
-        property_override_dual("ro.product.model", "ro.product.vendor.model", "GT-I9195");
-        property_override_dual("ro.product.device", "ro.product.vendor.device", "serranoltexx");
-    } else if (model == "E370K") {
-        /* serranoltektt */
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint",  "samsung/serranoltektt/serranoltektt:4.4.4/KTU84P/E370KKTU2BNK5:user/release-keys");
-        property_override("ro.build.description", "serranoltektt-user 4.4.4 KTU84P E370KKTU2BNK5 release-keys");
-        property_override_dual("ro.product.model", "ro.product.vendor.model", "SHV-E370K");
-        property_override_dual("ro.product.device", "ro.product.vendor.device", "serranoltektt");
+    } else if (model == "T217S") {
+        /* lt02ltespr */
+        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/lt02ltespr/lt02ltespr:4.4.2/KOT49H/T217SVPUBOH1:user/release-keys");
+        property_override("ro.build.description", "lt02ltespr-user 4.4.2 KOT49H T217SVPUBOH1 release-keys");
+        property_override_dual("ro.product.model", "ro.product.vendor.model", "SM-T217S");
+        property_override_dual("ro.product.device", "ro.product.vendor.device", "lt02ltespr");
+    } else if (model == "T217T") {
+        /* lt02ltetmo */
+        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/lt02ltetmo/lt02ltetmo:4.4.2/KOT49H/T217TVPUBOH1:user/release-keys");
+        property_override("ro.build.description", "lt02ltetmo-user 4.4.2 KOT49H T217TVPUBOH1 release-keys");
+        property_override_dual("ro.product.model", "ro.product.vendor.model", "SM-T217T");
+        property_override_dual("ro.product.device", "ro.product.vendor.device", "lt02ltetmo");
     }
 
     const std::string device = android::base::GetProperty("ro.product.device", "");
