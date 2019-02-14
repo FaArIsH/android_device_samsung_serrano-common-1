@@ -228,13 +228,6 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     disabled
     oneshot
 
-service fm_dl /vendor/bin/init.qcom.fm.sh
-    class late_start
-    user root
-    group system
-    disabled
-    oneshot
-
 service qcom-audio /vendor/bin/init.qcom.audio.sh
    class late_start
    user root
