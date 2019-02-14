@@ -57,7 +57,6 @@ on fs
 on boot
     write /sys/devices/i2c-3/3-0024/cyttsp_update_fw 1
     write /sys/devices/i2c-3/3-005b/update_fw 1
-    start qcamerasvr
 
 on post-fs-data
     mkdir /tombstones/modem 0771 system system
@@ -148,10 +147,6 @@ on post-fs-data
     chown system input /sys/class/input/input5/shape
     chown system input /sys/class/input/input5/self_test
 
-    # proximity_sensor
-    chown system input /sys/class/input/input5/enable
-    chown system input /sys/class/input/input6/enable
-
     # light_sensor
     chown system input /sys/class/input/input6/enable
     chown system input /sys/class/input/input6/poll_delay
@@ -175,15 +170,15 @@ on post-fs-data
     chown system radio /sys/class/sensors/grip_sensor/vendor
 
     # Proximity_sensor
-    chown system radio /sys/class/sensors/proximity_sensor/state
-    chown system radio /sys/class/sensors/proximity_sensor/raw_data
-    chown system radio /sys/class/sensors/proximity_sensor/prox_avg
-    chown system radio /sys/class/sensors/proximity_sensor/prox_cal
-    chown system radio /sys/class/sensors/proximity_sensor/vendor
-    chown system radio /sys/class/sensors/proximity_sensor/name
-    chown system radio /sys/class/sensors/proximity_sensor/thresh_high
-    chown system radio /sys/class/sensors/proximity_sensor/thresh_low
-    chown system radio /sys/class/sensors/proximity_sensor/barcode_emul_en
+    #chown system radio /sys/class/sensors/proximity_sensor/state
+    #chown system radio /sys/class/sensors/proximity_sensor/raw_data
+    #chown system radio /sys/class/sensors/proximity_sensor/prox_avg
+    #chown system radio /sys/class/sensors/proximity_sensor/prox_cal
+    #chown system radio /sys/class/sensors/proximity_sensor/vendor
+    #chown system radio /sys/class/sensors/proximity_sensor/name
+    #chown system radio /sys/class/sensors/proximity_sensor/thresh_high
+    #chown system radio /sys/class/sensors/proximity_sensor/thresh_low
+    #chown system radio /sys/class/sensors/proximity_sensor/barcode_emul_en
 
     # Light_sensor
     chown system radio /sys/class/sensors/light_sensor/lux
@@ -259,16 +254,6 @@ on post-fs-data
     chown system system /sys/class/sec/led/led_blink
     chown system system /sys/class/sec/led/led_lowpower
 
-    # NFC_BROADCOM
-    chmod 0600 /dev/bcm2079x
-    chown nfc nfc /dev/bcm2079x
-    mkdir /data/nfc
-    mkdir /data/nfc/param
-    chmod 0770 /data/nfc
-    chmod 0770 /data/nfc/param
-    chown nfc nfc /data/nfc
-    chown nfc nfc /data/nfc/param
-
     # MDNIE
     chown system system  /sys/class/mdnie/mdnie/lcdtype
     chown system system  /sys/class/mdnie/mdnie/lcd_power
@@ -301,17 +286,8 @@ on post-fs-data
     chown system radio /sys/class/sec/sec_touchkey/glove_mode
     chown system radio /sys/class/sec/sec_touchkey/flip_mode
 
-    # Permissions for Camera
-    chown system radio /sys/class/camera/rear/rear_camfw
-    chown system radio /sys/class/camera/rear/rear_camtype
-    chown system media_rw /sys/class/camera/rear/rear_checkApp
-    chown system camera /sys/class/camera/flash/rear_flash
-    chmod 664 /sys/class/camera/flash/rear_flash
-    chown system radio /sys/class/camera/front/front_camfw
-    chown system radio /sys/class/camera/front/front_camtype
-
     # Adjust YUV to RGB Conversion
-    chown system camera /sys/class/graphics/fb0/csc_cfg
+    chown system /sys/class/graphics/fb0/csc_cfg
     chmod 0660 /sys/class/graphics/fb0/csc_cfg
 
     # Ap thermister permission
@@ -395,12 +371,6 @@ on post-fs-data
     chmod 0660 /sys/class/lcd/panel/panel_colors
     chown system system /sys/class/lcd/panel/panel_colors
 
-    # Backlight notification
-    chown system system /sys/class/misc/backlightnotification/blink_control
-    chown system system /sys/class/misc/backlightnotification/enabled
-    chown system system /sys/class/misc/backlightnotification/led_count
-    chown system system /sys/class/misc/backlightnotification/notification_led
-    chown system system /sys/class/misc/backlightnotification/notification_led_mask
 
     # PCC
     chown system system /sys/devices/virtual/graphics/fb0/rgb
@@ -409,12 +379,6 @@ on post-fs-data
     # Touchkey
     chown system system /sys/class/sec/sec_touchkey/touchkey_enable
     chmod 0660 /sys/class/sec/sec_touchkey/touchkey_enable
-
-# Start camera server as daemon
-service qcamerasvr /vendor/bin/mm-qcamera-daemon
-    class late_start
-    user camera
-    group camera system inet input graphics
 
 service thermald /vendor/bin/thermald
     class main
