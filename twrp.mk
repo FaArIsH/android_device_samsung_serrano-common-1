@@ -12,12 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+TW_THEME := landscape_mdpi
 BOARD_HAS_NO_REAL_SDCARD := true
 RECOVERY_SDCARD_ON_DATA := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_VARIANT := twrp
 TARGET_RECOVERY_FSTAB := device/samsung/serrano-common/rootdir/twrp.fstab
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_EXCLUDE_TWRPAPP := true
+DEVICE_RESOLUTION := 1024x600
 TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_CRYPTO := true
 RECOVERY_TOUCHSCREEN_FLIP_Y := true
