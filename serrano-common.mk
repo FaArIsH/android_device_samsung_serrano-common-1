@@ -131,9 +131,13 @@ PRODUCT_PACKAGES += \
 #    SamsungDoze
 
 # Camera
-PRODUCT_PACKAGES += \
-    Snap
+#PRODUCT_PACKAGES += \
+#    Snap
 
+# Genlock is needed for camera blob
+PRODUCT_PACKAGES += \
+    libgenlock
+    
 # FlipFlap
 #PRODUCT_PACKAGES += \
 #    FlipFlap
