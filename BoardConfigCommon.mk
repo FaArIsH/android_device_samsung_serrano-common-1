@@ -30,13 +30,13 @@ COMMON_PATH := device/samsung/serrano-common
 -include vendor/samsung/serrano-common/BoardConfigVendor.mk
 
 # Includes
-TARGET_SPECIFIC_HEADER_PATH += $(COMMON_PATH)/include
+#TARGET_SPECIFIC_HEADER_PATH += $(COMMON_PATH)/include
 
 # The first api level the device has commercially launched on
 PRODUCT_SHIPPING_API_LEVEL := 19
 
 # HIDL
-DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest.xml
+#DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest.xml
 
 # Set default locale
 PRODUCT_LOCALES := en-GB
@@ -59,8 +59,26 @@ endif
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
 # Recovery
-LZMA_RAMDISK_TARGETS := recovery
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/fstab.qcom
+#LZMA_RAMDISK_TARGETS := recovery
+#TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/fstab.qcom
+
+# TWRP
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+DEVICE_RESOLUTION := 1024x600
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
+TW_FLASH_FROM_STORAGE := true
+TW_MAX_BRIGHTNESS := 255
+TW_THEME := landscape_mdpi
+TW_USE_TOOLBOX := true
+TW_EXCLUDE_TWRPAPP := true
+TARGET_RECOVERY_FSTAB := device/samsung/serrano-common/rootdir/twrp.fstab
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
+TW_BRIGHTNESS_PATH := /sys/devices/platform/msm_fb.525313/leds/lcd-backlight/brightness
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -75,12 +93,12 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
+#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
 
 # GPS
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
-BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
-TARGET_NO_RPC := true
+#BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+#BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+#TARGET_NO_RPC := true
 
 # Display
 SF_PRIMARY_DISPLAY_ORIENTATION := 270
@@ -103,8 +121,8 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 #    libgenlock
 
 # RIL
-BOARD_PROVIDES_LIBRIL := true
-TARGET_RIL_VARIANT := caf
+#BOARD_PROVIDES_LIBRIL := true
+#TARGET_RIL_VARIANT := caf
 
 # LineageHW
 #JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(COMMON_PATH)/lineagehw|**/*.java
@@ -113,6 +131,10 @@ TARGET_RIL_VARIANT := caf
 TARGET_INIT_VENDOR_LIB := libinit_serrano
 TARGET_RECOVERY_DEVICE_MODULES := libinit_serrano
 
+# Time zone data for recovery
+PRODUCT_COPY_FILES += \
+    system/timezone/output_data/iana/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
+    
 ifeq ($(WITH_TWRP),true)
 -include $(COMMON_PATH)/twrp.mk
 endif
