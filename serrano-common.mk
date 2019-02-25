@@ -19,13 +19,15 @@ $(call inherit-product, vendor/samsung/serrano-common/serrano-common-vendor.mk)
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/serrano-common/overlay
 
+PRODUCT_CHARACTERISTICS := tablet
+
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 960
-TARGET_SCREEN_WIDTH := 540
+TARGET_SCREEN_HEIGHT := 1024
+TARGET_SCREEN_WIDTH := 600
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -110,9 +112,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.serrano
 
-# Vibrator
+# Genlock is needed for camera blob
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-service.serrano
+    libgenlock
+
+# Vibrator
+#PRODUCT_PACKAGES += \
+#    android.hardware.vibrator@1.0-service.serrano
 
 # USB
 PRODUCT_PACKAGES += \
@@ -136,16 +142,16 @@ PRODUCT_PACKAGES += \
     libshim_camera_serrano
 
 # Doze
-PRODUCT_PACKAGES += \
-    SamsungDoze
+#PRODUCT_PACKAGES += \
+#    SamsungDoze
 
 # Camera
 PRODUCT_PACKAGES += \
     Snap
 
 # FlipFlap
-PRODUCT_PACKAGES += \
-    FlipFlap
+#PRODUCT_PACKAGES += \
+#    FlipFlap
 
 # call common serrano system props
 $(call inherit-product, device/samsung/serrano-common/system_prop.mk)
@@ -157,4 +163,4 @@ $(call inherit-product, device/samsung/serrano-common/system_prop.mk)
 $(call inherit-product, device/samsung/msm8930-common/msm8930.mk)
 
 # call dalvik heap config
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/tablet-7in-xhdpi-2048-dalvik-heap.mk)
